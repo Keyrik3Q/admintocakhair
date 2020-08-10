@@ -1,0 +1,52 @@
+<mat-card class="border border-info">
+    <div class="alert alert-info text-center" role="alert">
+        <h5 class="text-uppercase font-weight-bolder">Thông tin bảng thời gian</h5>
+    </div>
+
+    <mat-card-content class="custom-overflow">
+        <!-- idemployee field -->
+        <mat-form-field class="example-full-width">
+            <!-- <input matInput [(ngModel)]="input.idemployee" [required]="'true'" placeholder="Idemployee"> -->
+            <mat-select matNativeControl [(ngModel)]="input.idemployee" [required]="'true'" placeholder="Chọn nhân viên">
+                <mat-option *ngFor="let employee of employees" [value]="employee.id">
+                    {{employee.fullname}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- idshift field -->
+        <mat-form-field class="example-full-width">
+            <mat-select matNativeControl [(ngModel)]="input.idshift" [required]="'true'" placeholder="Chọn ca làm">
+                <mat-option *ngFor="let shift of shifts" [value]="shift.id">
+                    {{shift.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- startdate field -->
+        <mat-form-field class="example-full-width">
+            <!-- <input matInput [(ngModel)]="input.startdate" [required]="'true'" placeholder="Bắt đầu hợp đồng"> -->
+            <input matInput [(ngModel)]="input.startdate" [required]="'true'" placeholder="Ngày bắt đầu làm việc" [matDatepicker]="start" >
+            <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+            <mat-datepicker #start></mat-datepicker>
+        </mat-form-field>
+
+        <!-- enddate field -->
+        <mat-form-field class="example-full-width">
+            <!-- <input matInput [(ngModel)]="input.enddate" [required]="'true'" placeholder="Kết thúc hợp đồng"> -->
+            <input matInput [(ngModel)]="input.enddate" [required]="'true'" placeholder="Kết thúc làm việc" [matDatepicker]="end" >
+            <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+            <mat-datepicker #end></mat-datepicker>
+        </mat-form-field>
+
+    </mat-card-content>
+
+    <div class="text-center">
+        <button *ngIf="type == 1" (click)="onDeleteClick()" class="btn btn-danger custom-margin-button" mat-button>Xóa
+    </button>
+        <button class="btn btn-warning custom-margin-button" mat-button (click)="onNoClick()">Đóng</button>
+        <button cdkFocusInitial (click)="onOkClick()" class="btn btn-info custom-margin-button" mat-button>Đồng
+      ý</button>
+    </div>
+
+</mat-card>

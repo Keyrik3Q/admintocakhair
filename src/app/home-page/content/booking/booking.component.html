@@ -1,0 +1,156 @@
+<mat-card class="title-block">
+    <div class="row">
+        <div class="col-md-12 title-main">
+            <p>Tìm kiếm</p>
+        </div>
+    </div>
+</mat-card>
+<mat-card class="system-custom">
+    <div class="row">
+        <div class="col-6 col-sm-3">
+            <mat-form-field>
+                <mat-label>Chi Nhánh</mat-label>
+                <mat-select [(ngModel)]="branchId">
+                    <mat-option matInput *ngFor="let row of branch" [value]="row.id">{{ row.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-6 col-sm-3">
+            <mat-form-field>
+                <mat-label>Trạng thái</mat-label>
+                <mat-select [(ngModel)]="statusId">
+                    <mat-option matInput *ngFor="let row of status1" [value]="row.value">
+                        {{ row.viewValue }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-6 col-sm-3">
+            <mat-form-field>
+                <mat-label>Từ ngày</mat-label>
+                <input matInput [matDatepicker]="picker1" [(ngModel)]="startDates" [formControl]="dateStart"
+                    onkeypress="return false" />
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+                <button mat-button *ngIf="startDates !== ''" matSuffix mat-icon-button
+                    (click)="startDates = ''">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+
+        </div>
+        <div class="col-6 col-sm-3">
+            <mat-form-field>
+                <mat-label>Đến ngày</mat-label>
+                <input matInput [matDatepicker]="picker2" [(ngModel)]="endDates" [formControl]="dateEnd"
+                    onkeypress="return false" />
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+                <button mat-button *ngIf="endDates !== ''" matSuffix mat-icon-button
+                    (click)="endDates = ''">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+
+        <div class="col-12 text-center">
+            <button (click)="onFillterClick()" class="mb-2 mr-2 btn-transition btn btn-outline-primary button-filter"
+                style="width: 100px;">
+                Lọc
+            </button>
+        </div>
+    </div>
+</mat-card>
+<!--  end select-top -->
+
+<!-- button crud -->
+<mat-card class="button-system-custom title-header-crud">
+    <div class="row">
+        <div class="col-md-12 mb-3">
+            <button class="btn button-add" (click)="onInsertData()">
+                <i class="fa fa-fw" aria-hidden="true" title="Thêm mới"></i>
+                <span>Thêm mới</span>
+            </button>
+            <div class="clear"></div>
+        </div>
+    </div>
+</mat-card>
+<!-- end button crud-->
+
+<div class="mat-elevation-z8 rounded-bottom">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- id Column -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Mã</th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- idbranch Column -->
+        <ng-container matColumnDef="idbranch">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Chi nhánh</th>
+            <td mat-cell *matCellDef="let element"> {{getNameBranchesById(element.idbranch)}} </td>
+        </ng-container>
+
+        <!-- idservice Column -->
+        <ng-container matColumnDef="idservice">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Dịch vụ </th>
+            <td mat-cell *matCellDef="let element">{{getNameServiceById(element.idservice)}} </td>
+        </ng-container>
+
+        <!-- idservice Column -->
+        <ng-container matColumnDef="iduser">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Khách hàng</th>
+            <td mat-cell *matCellDef="let element">{{getNameUsersById(element.iduser)}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="userphone">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>SĐT Khách hàng</th>
+            <td mat-cell *matCellDef="let element">{{getPhoneUsersById(element.iduser)}} </td>
+        </ng-container>
+
+        <!-- idemployee Column -->
+        <ng-container matColumnDef="idemployee">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nhân viên </th>
+            <td mat-cell *matCellDef="let element"> {{getNameEmployeesById(element.idemployee)}} </td>
+        </ng-container>
+
+        <!-- dateorder Column -->
+        <ng-container matColumnDef="dateorder">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Ngày đặt lịch </th>
+            <td mat-cell *matCellDef="let element"> {{element.dateorder | date:'dd-MM-yyyy'}} </td>
+        </ng-container>
+
+        <!-- timeorder Column -->
+        <ng-container matColumnDef="timeorder">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Giờ đặt </th>
+            <td mat-cell *matCellDef="let element"> {{element.timeorder}} </td>
+        </ng-container>
+
+        <!-- status Column -->
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Trạng thái </th>
+            <td mat-cell *matCellDef="let element"> {{getStatus(element.status)}} </td>
+        </ng-container>
+
+        <!-- startdate Column -->
+        <ng-container matColumnDef="startdate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Ngày bắt đầu </th>
+            <td mat-cell *matCellDef="let element"> {{element.startdate | date:'dd-MM-yyyy'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="statuscare">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Đã chăm sóc</th>
+            <td mat-cell *matCellDef="let element"> <i class="fas fa-check" *ngIf="element.statuscare == 1"></i></td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row (dblclick)="onUpdateData(row)" class="example-element-row"
+            *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+    </table>
+
+    <mat-paginator class="rounded-bottom" [pageSize]="5" [pageSizeOptions]="[5, 10, 20, 40]" showFirstLastButtons>
+    </mat-paginator>
+</div>

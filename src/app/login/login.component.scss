@@ -1,0 +1,92 @@
+/* Made with love by Mutiullah Samim*/
+
+body{
+    background-image: url('../../assets/images/banner.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    font-family: 'Numans', sans-serif;
+    }
+    
+    .container{
+    height: 100%;
+    align-content: center;
+    }
+    
+    .logo-sk{
+        background: none;
+        height: 100px; 
+        margin-top: 10px;
+        img{
+            width: 115px;
+        }
+    }
+    
+    .card{
+    height: 370px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: rgba(0,0,0,0.5) !important;
+    }
+    
+    
+    
+    .card-header h3{
+    color: white;
+    }
+    
+    .user{
+    font-size: 29px;
+    
+    font-family: arabic typesetting;
+    
+    color: white; 
+    }
+    
+    #iconn{
+    
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    color: white;
+    
+    }
+    #iconn1{
+    
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    color: white;
+    
+    }
+    
+    #text1{
+        border: none;
+        border-radius: 0;
+        height: 40px;
+    }
+    #text2{
+        border: none;
+        border-radius: 0;
+        height: 40px;
+    }
+    
+    .btn{
+        width: 50%;
+        float: left;
+        height: 40px;
+        font-size: 18px;
+    }
+    .card-body{
+        padding: 0px 20px 20px 20px !important;
+    }
+
+    .login-admin{
+        background: #000;
+        color: #fff;
+        border: 1px solid #d3ae44;
+    }
+    .reset-admin{
+        background: #d3ae44;
+        color: #fff;
+        border: 1px solid #000;
+    }

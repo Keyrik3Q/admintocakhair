@@ -1,0 +1,60 @@
+<mat-card class="border border-info">
+  <div class="alert alert-info text-center" role="alert">
+    <h5 class="text-uppercase font-weight-bolder">Thông tin Timekeeping</h5>
+  </div>
+
+  <mat-card-content class="custom-overflow">
+    <!-- idemployee field -->
+    <mat-form-field class="example-full-width">
+      <!-- <input matInput [(ngModel)]="input.idemployee" [required]="'true'" placeholder="Idemployee"> -->
+      <mat-select matNativeControl [(ngModel)]="input.idemployee" [required]="'true'" placeholder="Chọn nhân viên">
+        <mat-option *ngFor="let employee of employees" [value]="employee.id">
+          {{employee.fullname}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- status field -->
+    <mat-form-field class="example-full-width">
+      <!-- <input matInput [(ngModel)]="input.status" [required]="'true'" placeholder="Trạng thái"> -->
+      <mat-select matNativeControl [(ngModel)]="input.status" [required]="'true'" placeholder="Trạng thái">
+        <mat-option *ngFor="let notification of notifications" [value]="notification.value">{{notification.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="type !== 1" class="example-full-width">
+      <input matInput [matDatepicker]="start" [(ngModel)]="input.datestart" [required]="'true'"
+        placeholder="Ngày bắt đầu nghỉ">
+      <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+      <mat-datepicker #start></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="type !== 1" class="example-full-width">
+      <input matInput [matDatepicker]="end" [(ngModel)]="input.dateend" [required]="'true'"
+        placeholder="Ngày kết thúc nghỉ">
+      <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+      <mat-datepicker #end></mat-datepicker>
+    </mat-form-field>
+
+    <!-- description field -->
+    <mat-form-field *ngIf="type !== 1" class="example-full-width">
+      <input matInput [(ngModel)]="input.description" [required]="'true'" placeholder="Description">
+    </mat-form-field>
+
+    <!-- type field -->
+    <mat-form-field *ngIf="type !== 1" class="example-full-width">
+      <input matInput [(ngModel)]="input.type" [required]="'true'" placeholder="Type">
+    </mat-form-field>
+
+  </mat-card-content>
+
+  <div class="text-center">
+    <!-- <button *ngIf="type == 1" (click)="onDeleteClick()" class="btn btn-danger custom-margin-button" mat-button>Xóa	
+        </button>	 -->
+    <button class="btn btn-warning custom-margin-button" mat-button [mat-dialog-close]="data.animal">Đóng</button>
+    <button cdkFocusInitial (click)="onOkClick()" class="btn btn-info custom-margin-button" mat-button>Đồng
+      ý</button>
+  </div>
+
+</mat-card>

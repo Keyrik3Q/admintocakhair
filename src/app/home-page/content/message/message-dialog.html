@@ -1,0 +1,51 @@
+<mat-card class="border border-info">
+  <div class="alert alert-info text-center" role="alert">
+    <h5 class="text-uppercase font-weight-bolder">Thông tin tin nhắn</h5>
+  </div>
+
+  <mat-card-content class="custom-overflow">
+    <!-- iduser field -->
+    <mat-form-field class="example-full-width">
+      <!-- <input matInput [(ngModel)]="input.iduser" [required]="'true'" placeholder="Khách hàng"> -->
+      <mat-select [(ngModel)]="input.iduser" [required]="'true'" placeholder="Khách hàng">
+        <mat-option *ngFor="let user of users" [value]="user.id">
+          {{user.fullname}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- idemployee field -->
+    <mat-form-field class="example-full-width">
+      <!-- <input matInput [(ngModel)]="input.idemployee" [required]="'true'" placeholder="Nhân viên"> -->
+      <mat-select [(ngModel)]="input.idemployee" [required]="'true'" placeholder="Nhân viên">
+        <mat-option *ngFor="let employee of employees" [value]="employee.id">
+          {{employee.fullname}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- isuser field -->
+    <mat-form-field class="example-full-width">
+      <input matInput [(ngModel)]="input.isuser" [required]="'true'" placeholder="Isuser">
+    </mat-form-field>
+
+    <!-- isemployee field -->
+    <mat-form-field class="example-full-width">
+      <input matInput [(ngModel)]="input.isemployee" [required]="'true'" placeholder="Isemployee">
+    </mat-form-field>
+
+    <!-- content field -->
+    <mat-form-field class="example-full-width">
+      <textarea matInput [(ngModel)]="input.content" [required]="'true'" placeholder="Nội Dung"> </textarea>
+    </mat-form-field>
+  </mat-card-content>
+
+  <div class="text-center">
+    <button *ngIf="type == 1" (click)="onDeleteClick()" class="btn btn-danger custom-margin-button" mat-button>Xóa
+    </button>
+    <button class="btn btn-warning custom-margin-button" mat-button [mat-dialog-close]="data.animal">Đóng</button>
+    <button cdkFocusInitial (click)="onOkClick()" class="btn btn-info custom-margin-button" mat-button>Đồng
+      ý</button>
+  </div>
+
+</mat-card>

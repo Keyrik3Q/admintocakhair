@@ -1,0 +1,87 @@
+<mat-card class="title-block">
+    <div class="row">
+        <div class="col-md-12 title-main">
+            <p>Tìm kiếm</p>
+        </div>
+    </div>
+</mat-card>
+
+<!-- select-top -->
+<mat-card class="system-custom">
+    <div class="row">
+        <div class="col-md-12 col-xs-12">
+            <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Tìm kiếm">
+            </mat-form-field>
+        </div>
+    </div>
+</mat-card>
+<!--  end select-top -->
+
+<!-- button crud -->
+<mat-card class="button-system-custom title-header-crud">
+    <div class="row">
+        <div class="col-md-12 mb-3">
+            <button class="btn button-add" (click)="onInsertData()">
+        <i class="fa fa-fw" aria-hidden="true" title="Thêm mới"></i>
+        <span>Thêm mới</span>
+      </button>
+            <div class="clear"></div>
+        </div>
+    </div>
+</mat-card>
+<!-- end button crud-->
+
+<div class="mat-elevation-z8 rounded-bottom">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- id Column -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Mã </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- idemployee Column -->
+        <ng-container matColumnDef="idemployee">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Tên nhân viên </th>
+            <td mat-cell *matCellDef="let element"> {{getNameEmployeesById(element.idemployee)}} </td>
+        </ng-container>
+
+        <!-- idshift Column -->
+        <ng-container matColumnDef="idshift">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Ca làm việc </th>
+            <td mat-cell *matCellDef="let element"> {{getNameShiftById(element.idshift)}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="starttime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Thời gian bắt đầu ca </th>
+            <td mat-cell *matCellDef="let element"> {{getStartShiftById(element.idshift)}} </td>
+        </ng-container>
+
+        <!-- enddate Column -->
+        <ng-container matColumnDef="endtime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Thười gian kết thúc ca </th>
+            <td mat-cell *matCellDef="let element">{{getEndShiftById(element.idshift)}}</td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="startdate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Ngày bắt đầu làm việc </th>
+            <td mat-cell *matCellDef="let element"> {{element.startdate | date : 'dd-MM-yyyy'}} </td>
+        </ng-container>
+
+        <!-- enddate Column -->
+        <ng-container matColumnDef="enddate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Ngày kết thúc làm việc </th>
+            <td mat-cell *matCellDef="let element">{{element.enddate | date : 'dd-MM-yyyy'}}</td>
+        </ng-container>
+
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row (dblclick)="onUpdateData(row)" class="example-element-row" *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+    </table>
+
+    <mat-paginator class="rounded-bottom" [pageSizeOptions]="[5, 10, 20, 40]" showFirstLastButtons></mat-paginator>
+</div>

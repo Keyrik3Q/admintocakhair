@@ -1,0 +1,92 @@
+<mat-card class="border border-info">
+
+  <div class="alert alert-info text-center" role="alert">
+    <h5 class="text-uppercase font-weight-bolder">Thông tin bình luận</h5>
+  </div>
+
+  <mat-card-content class="">
+    <!-- idbooking field -->
+    <mat-form-field class="example-full-width">
+      <input matInput [(ngModel)]="input.idbooking" [required]="'true'" placeholder="Mã đặt lịch">
+    </mat-form-field>
+
+    <!-- idemployee field -->
+    <mat-form-field class="example-full-width">
+      <!-- <input matInput [(ngModel)]="input.idemployee" [required]="'true'" placeholder="Nhân viên"> -->
+      <mat-select [(ngModel)]="input.idemployee" [required]="'true'" placeholder="Nhân viên">
+        <mat-option *ngFor="let employee of employees" [value]="employee.id">
+          {{employee.fullname}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- iduser field -->
+    <mat-form-field class="example-full-width">
+      <!-- <input matInput [(ngModel)]="input.iduser" [required]="'true'" placeholder="Khách hàng"> -->
+      <mat-select [(ngModel)]="input.iduser" [required]="'true'" placeholder="Khách hàng">
+        <mat-option *ngFor="let user of users" [value]="user.id">
+          {{user.fullname}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- startdate field -->
+    <mat-form-field class="example-full-width" *ngIf="type !== 1">
+      <!-- <input readonly="readonly" matInput [(ngModel)]="input.startdate" placeholder="Ngày bắt đầu"> -->
+      <mat-label>Ngày bắt đầu</mat-label>
+      <input type="datetime-local" matInput [(ngModel)]="input.startdate" [formControl]="date"
+        placeholder="Ngày bắt đầu">
+    </mat-form-field>
+
+    <!-- rate field -->
+    <mat-form-field class="example-full-width">
+      <textarea matInput [(ngModel)]="input.rate" [required]="'true'" placeholder="Đánh giá"> </textarea>
+    </mat-form-field>
+
+    <!-- question1 field11 -->
+    <label id="example-radio-group-label">Anh có hài lòng về thợ cắt ngày hôm nay?</label>
+    <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group d-inline-flex"
+      [(ngModel)]="input.question1">
+      <mat-radio-button
+       *ngFor="let answer of answers" [value]="answer.value"
+        class="d-block">
+        {{answer.viewValue}}
+      </mat-radio-button>
+    </mat-radio-group>
+
+       <!-- question1 field22 -->
+       <label id="example-radio-group-label">Anh có hài lòng về thợ cắt ngày hôm nay?</label>
+       <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group d-inline-flex"
+         [(ngModel)]="input.question2">
+         <mat-radio-button class="" *ngFor="let answer of answers" [value]="answer.value"
+           class="d-block">
+           {{answer.viewValue}}
+         </mat-radio-button>
+       </mat-radio-group>
+
+  
+        <!-- question1 field3 -->
+    <label id="example-radio-group-label">Anh có hài lòng về thợ cắt ngày hôm nay?</label>
+    <mat-radio-group aria-labelledby="" class="example-radio-group d-inline-flex"
+      [(ngModel)]="input.question3">
+      <mat-radio-button class="example-radio-button" *ngFor="let answer of answers" [value]="answer.value">
+        {{answer.viewValue}}
+      </mat-radio-button>
+    </mat-radio-group>
+
+    <!-- feedback field -->
+    <mat-form-field class="example-full-width">
+      <textarea matInput [(ngModel)]="input.feedback" [required]="'true'" placeholder="Phản hồi"></textarea>
+    </mat-form-field>
+
+  </mat-card-content>
+
+  <div class="text-center">
+    <button *ngIf="type == 1" (click)="onDeleteClick()" class="btn btn-danger custom-margin-button" mat-button>Xóa
+    </button>
+    <button class="btn btn-warning custom-margin-button" mat-button [mat-dialog-close]="data.animal">Đóng</button>
+    <button cdkFocusInitial (click)="onOkClick()" class="btn btn-info custom-margin-button" mat-button>Đồng
+      ý</button>
+  </div>
+
+</mat-card>

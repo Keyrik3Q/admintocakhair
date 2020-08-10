@@ -1,0 +1,32 @@
+<mat-card class="border border-info">
+  <div class="alert alert-info text-center" role="alert">
+    <h5 class="text-uppercase font-weight-bolder">Thông tin dịch vụ</h5>
+  </div>
+
+  <mat-card-content class="custom-overflow">
+    <!-- name field -->
+    <mat-form-field class="example-full-width">
+      <input matInput [(ngModel)]="input.name" [required]="'true'" placeholder="Tên dịch vụ">
+    </mat-form-field>
+
+    <!-- price field -->
+    <mat-form-field class="example-full-width">
+      <input matInput [(ngModel)]="input.price" [required]="'true'" placeholder="Giá">
+    </mat-form-field>
+
+    <!-- minutes field -->
+    <mat-form-field class="example-full-width">
+      <input matInput [(ngModel)]="input.minutes" [required]="'true'" placeholder="Thời gian(phút)">
+    </mat-form-field>
+
+  </mat-card-content>
+
+  <div class="text-center">
+    <button *ngIf="type == 1" (click)="onDeleteClick()" class="btn btn-danger custom-margin-button" mat-button>Xóa
+    </button>
+    <button class="btn btn-warning custom-margin-button" mat-button [mat-dialog-close]="data.animal">Đóng</button>
+    <button cdkFocusInitial (click)="onOkClick()" class="btn btn-info custom-margin-button" mat-button>Đồng
+      ý</button>
+  </div>
+
+</mat-card>

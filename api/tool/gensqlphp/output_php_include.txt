@@ -1,0 +1,13 @@
+include ../Service/100booking.php;
+include ../Service/200branch.php;
+include ../Service/300comment.php;
+include ../Service/400employee.php;
+include ../Service/500invite.php;
+include ../Service/600message.php;
+include ../Service/700notificate.php;
+include ../Service/800orders.php;
+include ../Service/900product.php;
+include ../Service/1000service.php;
+include ../Service/1100shift.php;
+include ../Service/1200timetable.php;
+include ../Service/1300user.php;

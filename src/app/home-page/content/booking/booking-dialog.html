@@ -1,0 +1,83 @@
+<mat-card class="border border-info">
+  <div class="alert alert-info text-center" role="alert">
+    <h5 class="text-uppercase font-weight-bolder">Thông tin đặt lịch</h5>
+  </div>
+
+  <mat-card-content class="custom-overflow">
+    <!-- idbranch field -->
+    <mat-form-field class="example-full-width">
+      <mat-select matNativeControl [(ngModel)]="input.idbranch" [required]="'true'" placeholder="Chọn chi nhánh">
+        <mat-option *ngFor="let branch of branches" [value]="branch.id">
+          {{branch.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- idservice field -->
+    <mat-form-field class="example-full-width">
+      <!-- <input matInput [(ngModel)]="input.idservice" [required]="'true'" placeholder="Dịch vụ"> -->
+      <mat-select matNativeControl [(ngModel)]="input.idservice" [required]="'true'" placeholder="Chọn dịch vụ">
+        <mat-option *ngFor="let service of services" [value]="service.id">
+          {{service.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+     <!-- iduser field -->
+     <mat-form-field class="example-full-width">
+      <!-- <input matInput [(ngModel)]="input.iduser" [required]="'true'" placeholder="Dịch vụ"> -->
+      <mat-select matNativeControl [(ngModel)]="input.iduser" [required]="'true'" placeholder="Chọn khách hàng">
+        <mat-option *ngFor="let user of users" [value]="user.id">
+          {{user.fullname}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- idemployee field -->
+    <mat-form-field class="example-full-width">
+      <!-- <input matInput [(ngModel)]="input.idemployee" [required]="'true'" placeholder="Nhân viên"> -->
+      <mat-select matNativeControl [(ngModel)]="input.idemployee" [required]="'true'" placeholder="Chọn nhân viên">
+        <mat-option *ngFor="let employee of employees" [value]="employee.id">
+          {{employee.fullname}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- dateorder field -->
+    <mat-form-field class="example-full-width">
+      <input matInput [matDatepicker]="dp" [(ngModel)]="input.dateorder" [required]="'true'" placeholder="Ngày đặt">
+      <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+      <mat-datepicker #dp></mat-datepicker>
+    </mat-form-field>
+
+    <!-- timeorder field -->
+    <mat-form-field class="example-full-width">
+      <input type="time" matInput [(ngModel)]="input.timeorder" [required]="'true'" placeholder="Thời gian đặt">
+    </mat-form-field>
+
+    <!-- status field -->
+    <mat-form-field class="example-full-width">
+      <!-- <input matInput [(ngModel)]="input.status" [required]="'true'" placeholder="Trạng thái"> -->
+      <mat-select matNativeControl [(ngModel)]="input.status" [required]="'true'" placeholder="Trạng thái">
+        <mat-option *ngFor="let status of statusDialog" [value]="status.value">
+          {{status.viewValue}}  
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button *ngIf="type == 1 && input.statuscare == 0" class="btn btn-outline-primary mb-3" (click)="checkStatuscare()">
+      Tick vào khi đã chăm sóc
+    </button>
+  </mat-card-content>
+
+
+
+  <div class="text-center">
+    <button *ngIf="type == 1" (click)="onDeleteClick()" class="btn btn-outline-danger custom-margin-button"
+      mat-button>Xóa
+    </button>
+    <button class="btn btn-warning custom-margin-button" mat-button [mat-dialog-close]="data.animal">Đóng</button>
+    <button cdkFocusInitial (click)="onOkClick()" class="btn btn-info custom-margin-button" mat-button>Đồng
+      ý</button>
+  </div>
+
+</mat-card>

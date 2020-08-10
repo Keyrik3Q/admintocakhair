@@ -1,0 +1,146 @@
+<mat-card class="title-block" >
+  <div class="row">
+    <div class="col-md-12 title-main">
+      <p>Tìm kiếm</p>
+    </div>
+  </div>
+</mat-card>
+
+<!-- select-top -->
+<mat-card class="system-custom">
+  <div class="row">
+    <div class="col-6 col-sm-3">
+      <mat-form-field>
+        <mat-label>Chi Nhánh</mat-label>
+        <mat-select [(ngModel)]="branchId">
+          <mat-option matInput *ngFor="let row of branch" [value]="row.id"
+            >{{ row.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 col-xs-6">
+      <mat-form-field>
+        <input
+          matInput
+          (keyup)="applyFilter($event.target.value)"
+          placeholder="Tìm kiếm"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-12 text-center">
+      <button (click)="onFillterClick()" class="mb-2 mr-2 btn-transition btn btn-outline-primary button-filter"
+          style="width: 100px;">
+          Lọc
+      </button>
+  </div>
+  </div>
+</mat-card>
+<!--  end select-top -->
+
+<!-- button crud -->
+<mat-card class="button-system-custom title-header-crud">
+  <div class="row">
+    <div class="col-md-12 mb-3">
+      <button class="btn button-add" (click)="onInsertData()">
+        <i class="fa fa-fw" aria-hidden="true" title="Thêm mới"></i>
+        <span>Thêm mới</span>
+      </button>
+      <div class="clear"></div>
+    </div>
+  </div>
+</mat-card>
+<!-- end button crud-->
+
+<div class="mat-elevation-z8 rounded-bottom">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <!-- id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Mã</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <!-- idbranch Column -->
+    <ng-container matColumnDef="idbranch">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Chi nhánh</th>
+      <td mat-cell *matCellDef="let element">
+        {{ getNameBranchesById(element.idbranch) }}
+      </td>
+    </ng-container>
+
+    <!-- fullname Column -->
+    <ng-container matColumnDef="fullname">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Họ tên</th>
+      <td mat-cell *matCellDef="let element">{{ element.fullname }}</td>
+    </ng-container>
+
+    <!-- phone Column -->
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Số điện thoại</th>
+      <td mat-cell *matCellDef="let element">{{ element.phone }}</td>
+    </ng-container>
+
+    <!-- born Column -->
+    <ng-container matColumnDef="born">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày sinh</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.born | date: "dd-MM-yyyy" }}
+      </td>
+    </ng-container>
+
+    <!-- password Column -->
+    <ng-container matColumnDef="password">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Mật khẩu</th>
+      <td mat-cell *matCellDef="let element">{{ element.password }}</td>
+    </ng-container>
+
+    <!-- image Column -->
+    <ng-container matColumnDef="image">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Ảnh đại diện</th>
+      <td mat-cell *matCellDef="let element">
+        <img
+          class="rounded"
+          width="50px"
+          height="50px"
+          src="{{ element.image }}"
+        />
+      </td>
+    </ng-container>
+
+    <!-- job Column -->
+    <ng-container matColumnDef="job">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Vị trí</th>
+      <td mat-cell *matCellDef="let element">{{ element.job }}</td>
+    </ng-container>
+
+    <!-- startworking Column -->
+    <ng-container matColumnDef="startworking">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Ngày bắt công việc
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.startworking | date: "dd-MM-yyyy hh:mm a" }}
+      </td>
+    </ng-container>
+
+    <!-- exp Column -->
+    <ng-container matColumnDef="exp">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Kinh nghiệm</th>
+      <td mat-cell *matCellDef="let element">{{ element.exp }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      (dblclick)="onUpdateData(row)"
+      class="example-element-row"
+      *matRowDef="let row; columns: displayedColumns"
+    ></tr>
+  </table>
+
+  <mat-paginator
+    class="rounded-bottom"
+    [pageSizeOptions]="[5, 10, 20, 40]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>

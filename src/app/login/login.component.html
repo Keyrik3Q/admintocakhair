@@ -1,0 +1,35 @@
+<body>
+    <div class="container">
+        <div class="d-flex justify-content-center h-100">
+            <div class="card">
+                <div class="card-header logo-sk justify-content-center">
+                    <img src="../../assets/images/logoakhair3.png" style="width:200px">
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label class="user" style="font-size: 100%;"> PHONE </label>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="iconn"> <i
+                                        class="glyphicon glyphicon-user"></i></span>
+                                <input [(ngModel)]="input.phone" type="text" class="form-control" id="text1" name="tl" placeholder="phone">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="user" style="font-size: 100%;"> PASSWORD </label>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="iconn1"> <i
+                                        class="glyphicon glyphicon-lock"></i></span>
+                                <input [(ngModel)]="passwordOld" type="password" class="form-control" id="text2" name="tl" placeholder=" Enter Password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button (click)="onLoginClick()" class="btn login-admin" style="border-radius:0px;margin-right: 0px;width: 45%;">login</button>
+                            <input type="reset" class="btn reset-admin" value="reset" style="border-radius:0px;margin-right: 0px;width: 45%;margin-left: 35px;">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

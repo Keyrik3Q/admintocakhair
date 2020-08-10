@@ -1,0 +1,102 @@
+<mat-card class="title-block">
+  <div class="row">
+    <div class="col-md-12 title-main">
+      <p>Tìm kiếm</p>
+    </div>
+  </div>
+</mat-card>
+
+<!-- select-top -->
+<mat-card class="system-custom">
+  <div class="row">
+    <div class="col-md-12 col-xs-12">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Tìm kiếm">
+      </mat-form-field>
+    </div>
+  </div>
+</mat-card>
+<!--  end select-top -->
+
+<!-- button crud -->
+<mat-card class="button-system-custom title-header-crud">
+  <div class="row">
+    <div class="col-md-12 mb-3">
+      <button class="btn button-add" (click)="onInsertData()">
+        <i class="fa fa-fw" aria-hidden="true" title="Thêm mới"></i>
+        <span>Thêm mới</span>
+      </button>
+      <div class="clear"></div>
+    </div>
+  </div>
+</mat-card>
+<!-- end button crud-->
+
+<div class="mat-elevation-z8 rounded-bottom">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <!-- id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> MÃ </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- idbooking Column -->
+    <ng-container matColumnDef="idbooking">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Mã đặt lịch </th>
+      <td mat-cell *matCellDef="let element"> {{element.idbooking}} </td>
+    </ng-container>
+
+    <!-- idemployee Column -->
+    <ng-container matColumnDef="idemployee">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nhân viên </th>
+      <td mat-cell *matCellDef="let element"> {{getNameEmployeesById(element.idemployee)}} </td>
+    </ng-container>
+
+    <!-- iduser Column -->
+    <ng-container matColumnDef="iduser">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Khách hàng </th>
+      <td mat-cell *matCellDef="let element">{{getNameUsersById(element.iduser)}} </td>
+    </ng-container>
+
+    <!-- startdate Column -->
+    <ng-container matColumnDef="startdate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Ngày comment </th>
+      <td mat-cell *matCellDef="let element"> {{element.startdate | date:'dd-MM-yyyy / hh:mm: aa'}} </td>
+    </ng-container>
+
+    <!-- rate Column -->
+    <ng-container matColumnDef="rate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Đánh giá </th>
+      <td mat-cell *matCellDef="let element"> {{element.rate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="question1">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Đánh giá </th>
+      <td mat-cell *matCellDef="let element"> {{getAnswer(element.question1)}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="question2">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Đánh giá </th>
+      <td mat-cell *matCellDef="let element">  {{getAnswer(element.question2)}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="question3">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Đánh giá </th>
+      <td mat-cell *matCellDef="let element">  {{getAnswer(element.question3)}} </td>
+    </ng-container>
+
+    <!-- feedback Column -->
+    <ng-container matColumnDef="feedback">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Phản hồi </th>
+      <td mat-cell *matCellDef="let element"> {{element.feedback}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row (dblclick)="onUpdateData(row)" class="example-element-row"
+      *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+  </table>
+
+  <mat-paginator class="rounded-bottom" [pageSizeOptions]="[5, 10, 20, 40]" showFirstLastButtons></mat-paginator>
+</div>

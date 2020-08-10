@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+// regular style toast 
+@import '~ngx-toastr/toastr'; 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.btn-request {
+    background: #0099CC !important;
+    border-radius: 0px;
+    border-color: #0099CC;
+}
+.dropdown-menu-right-custom {
+    padding: 5px;
+    .dropdown-item-custom {
+        margin-bottom: 0px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        padding: 10px 20px;
+    }
+}
